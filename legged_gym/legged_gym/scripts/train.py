@@ -31,8 +31,6 @@
 import numpy as np
 import os
 from datetime import datetime
-os.environ['MESA_VK_DEVICE_SELECT'] = '10de:26b1'
-os.environ["CUDA_VISIBLE_DEVICES"] = '0'
 
 import isaacgym
 from legged_gym.envs import *
