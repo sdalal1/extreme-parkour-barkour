@@ -162,6 +162,7 @@ class Terrain:
         stone_distance = 0.05 if difficulty==0 else 0.1
         gap_size = 1. * difficulty
         pit_depth = 1. * difficulty
+        
         if choice < self.proportions[0]:
             idx = 0
             if choice < self.proportions[0]/ 2:
@@ -272,12 +273,20 @@ class Terrain:
             idx = 16
             parkour_hurdle_terrain(terrain,
                                    num_stones=self.num_goals - 2,
-                                   stone_len=0.1+0.3*difficulty,
-                                   hurdle_height_range=[0.1+0.1*difficulty, 0.15+0.25*difficulty],
+                                #    stone_len=0.1+0.3*difficulty,
+                                   stone_len=0.1,
+
+                                #    hurdle_height_range=[0.1+0.1*difficulty, 0.15+0.25*difficulty],
+                                   hurdle_height_range=[0.5, 0.7],
+                                
                                    pad_height=0,
-                                   x_range=[1.2, 2.2],
-                                   y_range=self.cfg.y_range,
-                                   half_valid_width=[0.4, 0.8],
+                                   x_range=[0.7, 2.2],
+                                   
+                                #    y_range=self.cfg.y_range,
+                                    y_range=[0.001,0.001],
+                                #    half_valid_width=[0.4, 0.8],
+                                   half_valid_width=[0.1, 0.11],
+                                
                                    )
             # terrain.height_field_raw[:] = 0
             self.add_roughness(terrain)
@@ -285,11 +294,19 @@ class Terrain:
             idx = 17
             parkour_hurdle_terrain(terrain,
                                    num_stones=self.num_goals - 2,
-                                   stone_len=0.1+0.3*difficulty,
-                                   hurdle_height_range=[0.1+0.1*difficulty, 0.15+0.15*difficulty],
+                                #    stone_len=0.1+0.3*difficulty,
+                                   stone_len=0.1,
+                                
+                                #    hurdle_height_range=[0.1+0.1*difficulty, 0.15+0.15*difficulty],
+                                   hurdle_height_range=[0.5, 0.7],
+                                
                                    pad_height=0,
-                                   y_range=self.cfg.y_range,
-                                   half_valid_width=[0.45, 1],
+                                #    y_range=self.cfg.y_range,
+                                   y_range=[0.001,0.001],
+                                
+                                #    half_valid_width=[0.45, 1],
+                                   half_valid_width=[0.1, 0.11],
+                                
                                    flat=True
                                    )
             self.add_roughness(terrain)
@@ -492,8 +509,8 @@ def parkour_terrain(terrain,
     terrain.height_field_raw[-pad_width:, :] = pad_height
     
 def parkour_gap_terrain(terrain,
-                           platform_len=2.5, 
-                           platform_height=0., 
+                           platform_len=2.5,
+                           platform_height=0.,
                            num_gaps=8,
                            gap_size=0.3,
                            x_range=[1.6, 2.4],
@@ -564,15 +581,23 @@ def parkour_gap_terrain(terrain,
     terrain.height_field_raw[-pad_width:, :] = pad_height
 
 def parkour_hurdle_terrain(terrain,
-                           platform_len=2.5, 
+                        #    platform_len=2.5,
+                           platform_len=2.0, 
+                         
                            platform_height=0., 
                            num_stones=8,
-                           stone_len=0.3,
-                           x_range=[1.5, 2.4],
-                           y_range=[-0.4, 0.4],
-                           half_valid_width=[0.4, 0.8],
-                           hurdle_height_range=[0.2, 0.3],
-                           pad_width=0.1,
+                        #    stone_len=0.3,
+                           stone_len=0.01,
+                           stone_width=0.1,
+                        #    x_range=[1.5, 2.4],
+                           x_range=[-0.01, 0.01],
+                        
+                           y_range=[-0.01, 0.01],
+                        #    half_valid_width=[0.4, 0.8],
+                           half_valid_width=[0.1, 0.11],
+                        #    hurdle_height_range=[0.2, 0.3],
+                           hurdle_height_range=[0.5, 0.51],
+                           pad_width=0.05,
                            pad_height=0.5,
                            flat=False):
     goals = np.zeros((num_stones+2, 2))
@@ -595,7 +620,7 @@ def parkour_hurdle_terrain(terrain,
     terrain.height_field_raw[0:platform_len, :] = platform_height
 
     stone_len = round(stone_len / terrain.horizontal_scale)
-    # stone_width = round(stone_width / terrain.horizontal_scale)
+    stone_width = round(stone_width / terrain.horizontal_scale)
     
     # incline_height = round(incline_height / terrain.vertical_scale)
     # last_incline_height = round(last_incline_height / terrain.vertical_scale)
@@ -603,16 +628,29 @@ def parkour_hurdle_terrain(terrain,
     dis_x = platform_len
     goals[0] = [platform_len - 1, mid_y]
     last_dis_x = dis_x
+    state = "right"
     for i in range(num_stones):
         rand_x = np.random.randint(dis_x_min, dis_x_max)
-        rand_y = np.random.randint(dis_y_min, dis_y_max)
+        # rand_y = np.random.randint(dis_y_min, dis_y_max)
+        # rand_x = dis_x_min
+        rand_y = dis_y_min
         dis_x += rand_x
         if not flat:
             terrain.height_field_raw[dis_x-stone_len//2:dis_x+stone_len//2, ] = np.random.randint(hurdle_height_min, hurdle_height_max)
             terrain.height_field_raw[dis_x-stone_len//2:dis_x+stone_len//2, :mid_y+rand_y-half_valid_width] = 0
             terrain.height_field_raw[dis_x-stone_len//2:dis_x+stone_len//2, mid_y+rand_y+half_valid_width:] = 0
         last_dis_x = dis_x
-        goals[i+1] = [dis_x-rand_x//2, mid_y + rand_y]
+        # goals[i+1] = [dis_x-rand_x//2, mid_y + rand_y]
+        
+        if state == "right":
+            # print(f"right: {i}")
+            goals[i+1] = [dis_x, mid_y + rand_y + 10.0]
+            state = "left"
+        elif state == "left":
+            # print(f"left: {i}")
+            goals[i+1] = [dis_x, mid_y + rand_y - 10.0]
+            state = "right"
+            
     final_dis_x = dis_x + np.random.randint(dis_x_min, dis_x_max)
     # import ipdb; ipdb.set_trace()
     if final_dis_x > terrain.width:

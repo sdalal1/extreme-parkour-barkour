@@ -98,8 +98,8 @@ class LeggedRobotCfg(BaseConfig):
         #                 stepping stones
         #                 gaps, 
         #                 smooth flat]
-        terrain_proportions = [0.0, 0.15, 0.2, 0.15, 0.0, 0.0, 0.4, 0.1]
-        # terrain_proportions = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+        # terrain_proportions = [0.0, 0.15, 0.2, 0.15, 0.0, 0.0, 0.4, 0.1]
+        terrain_proportions = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
         # trimesh only:
         slope_treshold = 0.75 # slopes above this threshold will be corrected to vertical surfaces
 

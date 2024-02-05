@@ -92,11 +92,18 @@ def play(args):
                                     "platform": 0.,
                                     "large stairs up": 0.,
                                     "large stairs down": 0.,
-                                    "parkour": 0.25,
-                                    "parkour_hurdle": 0.25,
-                                    "parkour_flat": 0.,
-                                    "parkour_step": 0.25,
-                                    "parkour_gap": 0.25, 
+                                    # "parkour": 0.25,
+                                    "parkour": 0.0,
+                                    
+                                    # "parkour_hurdle": 0.25,
+                                    "parkour_hurdle": 0.9,
+                                    
+                                    # "parkour_flat": 0.,
+                                    "parkour_flat": 0.0,
+                                    # "parkour_step": 0.25,
+                                    "parkour_step": 0.0,
+                                    "parkour_gap": 0.0, 
+                                    # "parkour_gap": 0.25, 
                                     "demo": 0}
     
     env_cfg.terrain.terrain_proportions = list(env_cfg.terrain.terrain_dict.values())
