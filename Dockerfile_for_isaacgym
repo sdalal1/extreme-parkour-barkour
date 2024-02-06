@@ -1,0 +1,59 @@
+FROM nvcr.io/nvidia/pytorch:21.09-py3
+ENV DEBIAN_FRONTEND=noninteractive 
+
+# dependencies for gym
+#
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+ libxcursor-dev \
+ libxrandr-dev \
+ libxinerama-dev \
+ libxi-dev \
+ mesa-common-dev \
+ zip \
+ unzip \
+ make \
+ gcc-8 \
+ g++-8 \
+ vulkan-utils \
+ mesa-vulkan-drivers \
+ pigz \
+ git \
+ libegl1 \
+ git-lfs \
+ sudo \
+ software-properties-common
+# Force gcc 8 to avoid CUDA 10 build issues on newer base OS
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 8
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 8
+
+# WAR for eglReleaseThread shutdown crash in libEGL_mesa.so.0 (ensure it's never detected/loaded)
+# Can't remove package libegl-mesa0 directly (because of libegl1 which we need)
+RUN rm /usr/lib/x86_64-linux-gnu/libEGL_mesa.so.0 /usr/lib/x86_64-linux-gnu/libEGL_mesa.so.0.0.0 /usr/share/glvnd/egl_vendor.d/50_mesa.json
+
+COPY docker/nvidia_icd.json /usr/share/vulkan/icd.d/nvidia_icd.json
+COPY docker/10_nvidia.json /usr/share/glvnd/egl_vendor.d/10_nvidia.json
+COPY docker/extreme-parkour-barkour /opt/extreme-parkour
+WORKDIR /opt/isaacgym
+RUN useradd --create-home gymuser
+USER gymuser
+
+# copy gym repo to docker
+COPY --chown=gymuser . .
+# install gym modules
+ENV PATH="/home/gymuser/.local/bin:$PATH"
+RUN cd python && pip install -q -e .
+
+#RUN cd /opt/extreme-parkour/rsl_rl && pip3 install -e .
+
+#RUN cd /opt/extreme-parkour/legged_gym && pip3 install -e .
+
+ENV NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=all
+
+USER root
+
+RUN sudo add-apt-repository ppa:deadsnakes/ppa -y && sudo apt-get update -y && sudo apt-get install python3.8-dev -y
+
+RUN python3.8 -m venv testing_en
+
+#RUN source /opt/testing_en/bin/activate
