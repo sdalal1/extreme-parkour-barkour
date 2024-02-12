@@ -419,7 +419,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/trunk.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/trunk.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -472,7 +472,7 @@
     <visual>
       <origin rpy="3.141592653589793 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/hip.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/hip.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -514,7 +514,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/thigh_mirror.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/thigh_mirror.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -542,7 +542,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/calf.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/calf.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -624,7 +624,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/hip.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/hip.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -666,7 +666,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/thigh.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/thigh.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -694,7 +694,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/calf.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/calf.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -776,7 +776,7 @@
     <visual>
       <origin rpy="3.141592653589793 3.141592653589793 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/hip.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/hip.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -818,7 +818,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/thigh_mirror.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/thigh_mirror.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -846,7 +846,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/calf.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/calf.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -928,7 +928,7 @@
     <visual>
       <origin rpy="0 3.141592653589793 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/hip.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/hip.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -970,7 +970,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/thigh.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/thigh.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -998,7 +998,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/calf.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/calf.dae" scale="1 1 1"/>
       </geometry>
       <!-- <material name="orange"/> -->
     </visual>
@@ -1083,7 +1083,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/depthCamera.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/depthCamera.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <inertial>
@@ -1157,7 +1157,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/depthCamera.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/depthCamera.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <inertial>
@@ -1231,7 +1231,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/depthCamera.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/depthCamera.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <inertial>
@@ -1305,7 +1305,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/depthCamera.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/depthCamera.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <inertial>
@@ -1379,7 +1379,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/depthCamera.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/depthCamera.dae" scale="1 1 1"/>
       </geometry>
     </visual>
     <inertial>
@@ -1467,7 +1467,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/ultraSound.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/ultraSound.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -1492,7 +1492,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/ultraSound.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/ultraSound.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -1517,7 +1517,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/sdalal/project_test/extreme-parkour/legged_gym/resources/robots/go1/meshes/ultraSound.dae" scale="1 1 1"/>
+        <mesh filename="file:///home/sdalal/ws/winter_project/src/isaacgym/docker/extreme-parkour-barkour/legged_gym/resources/robots/go1/meshes/ultraSound.dae" scale="1 1 1"/>
       </geometry>
       <material name="black"/>
     </visual>
