@@ -301,6 +301,7 @@ class Terrain:
                                    hurdle_height_range=[0.5, 0.7],
                                 
                                    pad_height=0,
+                                   x_range=[0.7, 2.2],
                                 #    y_range=self.cfg.y_range,
                                    y_range=[0.001,0.001],
                                 
