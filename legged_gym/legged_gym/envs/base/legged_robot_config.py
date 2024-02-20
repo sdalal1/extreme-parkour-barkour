@@ -93,7 +93,7 @@ class LeggedRobotCfg(BaseConfig):
         camera_terrain_num_cols = 20
 
         # position = [0.27, 0, 0.03]  # front camera
-        #position = [0.27, 0, 1.3]  # front camera
+         #position = [0.27, 0, 1.3]  # front camera
         position = [0.245+0.027, 0.0075, 0.072+0.02]  # front camera
         
         angle = [-5, 5]  # positive pitch down
@@ -101,9 +101,9 @@ class LeggedRobotCfg(BaseConfig):
         update_interval = 5  # 5 works without retraining, 8 worse
 
         
-        angle = [-5, 5]  # positive pitch down
+        # angle = [-5, 5]  # positive pitch down
 
-        update_interval = 5  # 5 works without retraining, 8 worse
+        # update_interval = 5  # 5 works without retraining, 8 worse
 
         original = (106, 60)
         resized = (87, 58)
