@@ -144,10 +144,12 @@ def play(args):
             if env.cfg.depth.use_camera:
                 if infos["depth"] is not None:
                     depth_latent = torch.ones((env_cfg.env.num_envs, 32), device=env.device)
-                    actions, depth_latent = policy_jit(obs.detach(), True, infos["depth"], depth_latent)
+                    # actions, depth_latent = policy_jit(obs.detach(), True, infos["depth"], depth_latent)
+                    actions = policy_jit(obs.detach(), depth_latent) 
                 else:
                     depth_buffer = torch.ones((env_cfg.env.num_envs, 58, 87), device=env.device)
-                    actions, depth_latent = policy_jit(obs.detach(), False, depth_buffer, depth_latent)
+                    actions = policy_jit(obs.detach(), depth_latent) 
+                    # actions, depth_latent = policy_jit(obs.detach(), False, depth_buffer, depth_latent)
             else:
                 obs_jit = torch.cat((obs.detach()[:, :env_cfg.env.n_proprio+env_cfg.env.n_priv], obs.detach()[:, -env_cfg.env.history_len*env_cfg.env.n_proprio:]), dim=1)
                 actions = policy(obs_jit)
@@ -180,7 +182,6 @@ def play(args):
               "actual vx", env.base_lin_vel[env.lookat_id, 0].item(), )
         
         id = env.lookat_id
-        
 
 if __name__ == '__main__':
     EXPORT_POLICY = False
