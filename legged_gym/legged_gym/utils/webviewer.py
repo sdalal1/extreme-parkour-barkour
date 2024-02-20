@@ -200,7 +200,7 @@ class WebViewer:
             camera_props = gymapi.CameraProperties()
             camera_props.width = 960
             camera_props.height = 540
-            # camera_props.enable_tensors = True
+            #camera_props.enable_tensors = True
             # camera_props.horizontal_fov = camera_horizontal_fov
 
             camera_handle = self._gym.create_camera_sensor(env_handle, camera_props)

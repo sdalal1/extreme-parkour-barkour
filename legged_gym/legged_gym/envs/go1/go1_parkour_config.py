@@ -64,7 +64,7 @@ class Go1ParkourCfg( LeggedRobotCfg ):
         #file = '{LEGGED_GYM_ROOT_DIR}/resources/robots/a1/urdf/a1.urdf'
         foot_name = "foot"
         penalize_contacts_on = ["thigh", "calf", "base", "hip"]
-        # terminate_after_contacts_on = ["base"]#, "thigh", "calf"]
+        terminate_after_contacts_on = ["base","trunk", "thigh", "calf"]
         self_collisions = 1 # 1 to disable, 0 to enable...bitwise filter
   
     class rewards( LeggedRobotCfg.rewards ):
