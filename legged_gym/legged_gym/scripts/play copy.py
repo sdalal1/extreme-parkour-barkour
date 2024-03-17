@@ -125,7 +125,7 @@ def play(args):
         path = os.path.join(path, model)
         print("Loading jit for policy: ", path)
         policy_jit = torch.jit.load(path, map_location=env.device)
-        vision_weights = torch.load(weights, map_location=env.device)
+        # vision_weights = torch.load(weights, map_location=env.device)
 
     estimator = ppo_runner.get_estimator_inference_policy(device=env.device)
     if env.cfg.depth.use_camera:

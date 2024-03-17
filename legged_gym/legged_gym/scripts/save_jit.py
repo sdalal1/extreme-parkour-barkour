@@ -9,6 +9,7 @@ from rsl_rl.modules.depth_backbone import DepthOnlyFCBackbone58x87, RecurrentDep
 import argparse
 import code
 import shutil
+import json
 
 def get_load_path(root, load_run=-1, checkpoint=-1, model_name_include="model"):
     if not os.path.isdir(root):  # use first 4 chars to mactch the run name
@@ -95,6 +96,12 @@ def play(args):
     if not os.path.exists(os.path.join(load_run, "traced")):
         os.mkdir(os.path.join(load_run, "traced"))
     state_dict = {'depth_encoder_state_dict': ac_state_dict['depth_encoder_state_dict']}
+    #st = state_dict
+    #for entry in state_dict:
+     #   st[entry] = st[entry].to(cpu).data_numpy().tolist()
+
+    #with open("config.json", "w") as f:
+     #   json.dump(st, f)
     torch.save(state_dict, os.path.join(load_run, "traced", args.exptid + "-" + str(checkpoint) + "-vision_weight.pt"))
 
     # Save the traced actor

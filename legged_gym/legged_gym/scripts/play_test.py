@@ -72,7 +72,7 @@ def play(args):
     
     # override some parameters for testing
     if args.nodelay:
-        env_cfg.domain_rand.action_delay_view = 0
+       env_cfg.domain_rand.action_delay_view = 0
     env_cfg.env.num_envs = 16 if not args.save else 64
     env_cfg.env.episode_length_s = 60
     env_cfg.commands.resampling_time = 60
@@ -121,14 +121,12 @@ def play(args):
     # prepare environment
     env: LeggedRobot
     env, _ = task_registry.make_env(name=args.task, args=args, env_cfg=env_cfg)
-    obs = env.get_observations()
+    #obs = env.get_observations()
 
     # if args.web:
     #     web_viewer.setup(env)
 
     # load policy
-    train_cfg.runner.resume = True
-    ppo_runner, train_cfg, log_pth = task_registry.make_alg_runner(log_root = log_pth, env=env, name=args.task, args=args, train_cfg=train_cfg, return_log_dir=True)
     
     if args.use_jit:
         print("Loading jit policy")
@@ -142,7 +140,6 @@ def play(args):
         
         print("Loading jit for policy: ", path)
         policy_jit = torch.jit.load(path, map_location=env.device)
-        #policy_jit.load_state_dict(model)
     else:
         policy = ppo_runner.get_inference_policy(device=env.device)
     estimator = ppo_runner.get_estimator_inference_policy(device=env.device)
@@ -169,7 +166,6 @@ def play(args):
                     #IPython.embed()
 
                     obs_jit = torch.cat((obs.detach()[:, :env_cfg.env.n_proprio+env_cfg.env.n_priv], obs.detach()[:, -env_cfg.env.history_len*env_cfg.env.n_proprio:]), dim=1)
-                    depth_encoder.load_state_dict(dic)
                     depth_latent_and_yaw = depth_encoder(infos["depth"], obs_student)
                     depth_latent = depth_latent_and_yaw[:, :-2]
                     ##depth_latent = depth_encoder(dic, obs.detach())
@@ -183,36 +179,6 @@ def play(args):
             #else:
                 #obs_jit = torch.cat((obs.detach()[:, :env_cfg.env.n_proprio+env_cfg.env.n_priv], obs.detach()[:, -env_cfg.env.history_len*env_cfg.env.n_proprio:]), dim=1)
                 #actions = policy(obs_jit)
-        else:
-            if env.cfg.depth.use_camera:
-                if infos["depth"] is not None:
-                    obs_student = obs[:, :env.cfg.env.n_proprio].clone()
-                    obs_student[:, 6:8] = 0
-                    depth_latent_and_yaw = depth_encoder(infos["depth"], obs_student)
-                    depth_latent = depth_latent_and_yaw[:, :-2]
-                    #print("depthhh", str(depth_latent.shape()))
-                    yaw = depth_latent_and_yaw[:, -2:]
-                    print("observation space",str(obs.detach().shape))
-
-                obs[:, 6:8] = 1.5*yaw
-                    
-            else:
-                depth_latent = None
-            
-            if hasattr(ppo_runner.alg, "depth_actor"):
-                print("observations", depth_latent.shape)
-                actions = ppo_runner.alg.depth_actor(obs.detach(), hist_encoding=True, scandots_latent=depth_latent)
-            else:
-                #csv_file = "/home/sdalal/data.csv"
-                # df = pd.read_csv(csv_file)
-                #with open(csv_file, 'r') as f:
-                 #   reader = csv.reader(f, delimiter=',')
-                  #  for i,row in enumerate(reader):
-                        # print("Row",row)
-                   #     rows_data = [float(i) for i in row]
-                    #    actions = torch.tensor(rows_data, dtype=torch.float32) 
-        #                print(actions)
-         #               obs, _, rews, dones, infos = env.step(actions)
                 
                 # for index,row in df.iterrows():
                 #     print("INdex",index)
@@ -223,7 +189,6 @@ def play(args):
                 #     # actions = torch.reshape(actions, (-1, 1))
                     
                 
-                actions = policy(obs.detach(), hist_encoding=True, scandots_latent=depth_latent)
                 # print("actions",actions.detach())
                 # ac_np = actions.detach().numpy()
                 # rows.append(ac_np) 
@@ -239,6 +204,10 @@ def play(args):
         print("time:", env.episode_length_buf[env.lookat_id].item() / 50, 
             "cmd vx", env.commands[env.lookat_id, 0].item(),
             "actual vx", env.base_lin_vel[env.lookat_id, 0].item(),actions )
+    id = env.lookat_id
+# except KeyboardInterrupt:  
+#     csv_file = "~/data.csv"
+#     df = pd.DataFrame(rows)
 #     df.to_csv(csv_file, header=False, index=False)
 #     print(f"CSV file saved at {csv_file}")
         
