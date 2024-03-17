@@ -704,6 +704,8 @@ class LeggedRobot(BaseTask):
         dof_state_tensor = self.gym.acquire_dof_state_tensor(self.sim)
         net_contact_forces = self.gym.acquire_net_contact_force_tensor(self.sim)
         force_sensor_tensor = self.gym.acquire_force_sensor_tensor(self.sim)
+        #import IPython
+        #IPython.embed()
         rigid_body_state_tensor = self.gym.acquire_rigid_body_state_tensor(self.sim)
         self.gym.refresh_dof_state_tensor(self.sim)
         self.gym.refresh_actor_root_state_tensor(self.sim)
@@ -931,6 +933,8 @@ class LeggedRobot(BaseTask):
 
 
         for s in ["FR_foot", "FL_foot", "RR_foot", "RL_foot"]:
+            #import IPython
+            #IPython.embed()
             feet_idx = self.gym.find_asset_rigid_body_index(robot_asset, s)
             sensor_pose = gymapi.Transform(gymapi.Vec3(0.0, 0.0, 0.0))
             self.gym.create_asset_force_sensor(robot_asset, feet_idx, sensor_pose)

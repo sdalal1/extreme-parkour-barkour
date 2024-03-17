@@ -1,0 +1,11 @@
+<launch>
+    <!-- Arguments -->
+    <arg name="use_rviz" default="true"/>
+
+    <!-- Launch rviz node if use_rviz==true -->
+    <node pkg="rviz2" exec="rviz2" args="-d $(find-pkg-share hallway_detection)/hallway_detection.rviz" if="$(eval '\'$(var use_rviz)\' == \'true\'')"/>
+
+    <!-- Launch hallway detection node -->
+    <node pkg="hallway_detection" exec="hallway_detection"/>
+
+</launch>

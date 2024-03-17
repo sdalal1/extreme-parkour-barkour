@@ -1,23 +1,16 @@
 # Extreme Parkour with Legged Robots #
-<p align="center">
-<img src="./images/teaser.jpeg" width="80%"/>
-</p>
-
-**Authors**: [Xuxin Cheng*](https://chengxuxin.github.io/), [Kexin Shi*](https://tenhearts.github.io/), [Ananye Agarwal](https://anag.me/), [Deepak Pathak](https://www.cs.cmu.edu/~dpathak/)  
-**Website**: https://extreme-parkour.github.io  
-**Paper**: https://arxiv.org/abs/2309.14341  
-**Tweet Summary**: https://twitter.com/pathak2206/status/1706696237703901439
+This package is forked from [Extreme Parkour](https://github.com/chengxuxin/extreme-parkour)
 
 ### Installation ###
 ```bash
-conda create -n parkour python=3.8
-conda activate parkour
-cd
+# Download the Isaac Gym binaries from https://developer.nvidia.com/isaac-gym 
+# Originally trained with Preview3, but haven't seen bugs using Preview4.
+# Prefer running the package inside the Docker Coontainer Provided in this package
+# Copy the docker file to the isaacgym/docker
+# Run the ./build.sh and ./run.sh
 pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 git clone git@github.com:chengxuxin/extreme-parkour.git
 cd extreme-parkour
-# Download the Isaac Gym binaries from https://developer.nvidia.com/isaac-gym 
-# Originally trained with Preview3, but haven't seen bugs using Preview4.
 cd isaacgym/python && pip install -e .
 cd ~/extreme-parkour/rsl_rl && pip install -e .
 cd ~/extreme-parkour/legged_gym && pip install -e .
@@ -55,6 +48,13 @@ python play.py --exptid yyy-yy --delay --use_camera
 python save_jit.py --exptid xxx-xx
 ```
 This will save the models in `legged_gym/logs/parkour_new/xxx-xx/traced/`.
+
+### Saved Model
+There is a saved model for deployment in the logs folder
+
+### ROS package for deployment
+There is a ROS package included in the bundle.
+
 
 ### Viewer Usage
 Can be used in both IsaacGym and web viewer.
