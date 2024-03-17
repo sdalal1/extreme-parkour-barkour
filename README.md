@@ -1,5 +1,7 @@
-# Extreme Parkour with Legged Robots #
+# Reinforcement Learning for Quadruped #
 This package is forked from [Extreme Parkour](https://github.com/chengxuxin/extreme-parkour)
+
+[!running_video](https://github.com/sdalal1/extreme-parkour-barkour/assets/80363654/84d8e007-ffa6-4e76-8c18-920cc7423f1f)
 
 ### Installation ###
 ```bash
@@ -53,8 +55,12 @@ This will save the models in `legged_gym/logs/parkour_new/xxx-xx/traced/`.
 There is a saved model for deployment in the logs folder
 
 ### ROS package for deployment
-There is a ROS package included in the bundle.
-
+There is a ROS package included in the bundle. The saved model is in there.
+```bash
+colcon build
+source install/setup.bash
+ros2 launch hallway_detection detect.launch.xml
+```
 
 ### Viewer Usage
 Can be used in both IsaacGym and web viewer.
