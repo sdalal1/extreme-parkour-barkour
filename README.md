@@ -1,7 +1,9 @@
 # Reinforcement Learning for Quadruped #
 This package is forked from [Extreme Parkour](https://github.com/chengxuxin/extreme-parkour)
+The packege here was modified to use for a Unitree Go1 to perform weaving around poles using Reinforcement learning. 
 
 [!running_video](https://github.com/sdalal1/extreme-parkour-barkour/assets/80363654/84d8e007-ffa6-4e76-8c18-920cc7423f1f)
+
 
 ### Installation ###
 ```bash
@@ -9,10 +11,15 @@ This package is forked from [Extreme Parkour](https://github.com/chengxuxin/extr
 # Originally trained with Preview3, but haven't seen bugs using Preview4.
 # Prefer running the package inside the Docker Coontainer Provided in this package
 # Copy the docker file to the isaacgym/docker
+cp Dockerfile_for_Isaacgym isaacgym/docker/Dockerfile
 # Run the ./build.sh and ./run.sh
+cd isaacgym/docker
+./build.sh && ./run.sh
+docker exec -it isaacgym_container /bin/bash
+#The docker should open as a root and follow the next steps for setup
 pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
-git clone git@github.com:chengxuxin/extreme-parkour.git
-cd extreme-parkour
+git clone git@github.com:sdalal1/extreme-parkour-barkour.git
+cd extreme-parkour-barkour
 cd isaacgym/python && pip install -e .
 cd ~/extreme-parkour/rsl_rl && pip install -e .
 cd ~/extreme-parkour/legged_gym && pip install -e .
@@ -20,6 +27,8 @@ pip install "numpy<1.24" pydelatin wandb tqdm opencv-python ipdb pyfqmr flask
 ```
 
 ### Usage ###
+The scripts folder contains all the required scripts to run the training and playback of the policy. Follow the steps below.
+
 `cd legged_gym/scripts`
 1. Train base policy:  
 ```bash
@@ -44,18 +53,35 @@ No need to write the full exptid. The parser will auto match runs with first 6 s
 ```bash
 python play.py --exptid yyy-yy --delay --use_camera
 ```
+[training_video](https://github.com/sdalal1/extreme-parkour-barkour/assets/80363654/8a04eaa2-7398-49d1-8855-cff785768130)
+
 
 5. Save models for deployment:
 ```bash
 python save_jit.py --exptid xxx-xx
 ```
-This will save the models in `legged_gym/logs/parkour_new/xxx-xx/traced/`.
+This will save the models in `legged_gym/logs/parkour_new/yyy-yy/traced/`.
 
 ### Saved Model
-There is a saved model for deployment in the logs folder
+There is a saved model for deployment in the logs folder. The model is `go-dist-2.0.7`. Thos saved model was used for weaving poles.
+The depth policy of the model was deployed using the ROS package.
 
 ### ROS package for deployment
-There is a ROS package included in the bundle. The saved model is in there.
+There is a ROS package included in the bundle. The saved model is in there. 
+```bash
+#connect to the unitree with following commands
+ifconfig # Tells you enpxxx, your computer's network interfaces 
+sudo ifconfig enpxxx down
+sudo ifconfig enpxxx 192.168.123.162/24
+sudo ifconfig enpxxx up
+ping 192.168.123.161
+```
+The saved model was ran on an external jetson-nano which was connected to a Realsense Camera.
+```bash
+#Launch the realsense ros node
+ros2 launch realsense_camera rs_launch.py
+```
+
 ```bash
 colcon build
 source install/setup.bash
@@ -78,14 +104,9 @@ Can be used in both IsaacGym and web viewer.
 - --seed: random seed.
 - --no_wandb: no wandb logging.
 - --use_camera: use camera or scandots.
-- --web: used for playing on headless machines. It will forward a port with vscode and you can visualize seemlessly in vscode with your idle gpu or cpu. [Live Preview](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server) vscode extension required, otherwise you can view it in any browser.
 
-### Acknowledgement
-https://github.com/leggedrobotics/legged_gym  
-https://github.com/Toni-SM/skrl
 
 ### Citation
-If you found any part of this code useful, please consider citing:
 ```
 @article{cheng2023parkour,
 title={Extreme Parkour with Legged Robots},
